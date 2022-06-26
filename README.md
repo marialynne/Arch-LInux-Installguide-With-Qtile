@@ -235,7 +235,7 @@ mod + ctrl + r | restart qtile
 mod + ctrl + q | logout
 
 
-**Recuerda actualozar Qtile con cada cambio que se haga a la configuración**
+**Recuerda actualizar Qtile con cada cambio que se haga a la configuración**
 
 
 ```
