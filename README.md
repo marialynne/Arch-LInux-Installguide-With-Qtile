@@ -46,7 +46,7 @@ Debe de verse así:
 # Formatear particiones
 
 # mkfs.ext4 /dev/root_partition
-mkfs.ext4 /dev/nvme0n1p1
+mkfs.ext4 /dev/nvme0n1p3
 
 # mkswap /dev/swap_partition
 mkswap /dev/nvme0n1p2
