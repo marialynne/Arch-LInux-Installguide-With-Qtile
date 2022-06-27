@@ -194,6 +194,7 @@ pacman -S neofetch
 # Instalamos git
 pacman -S git
 
+# Desde manu320 (usuario)
 # Creamos carpeta para nuestros repositorios del sistema
 mkdir -p Repos
 
