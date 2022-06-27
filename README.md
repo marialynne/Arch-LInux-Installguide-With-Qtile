@@ -303,5 +303,13 @@ sudo pacman -S zsh zsh-completions
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+# Instalación de snap y spotify
+cd repos
+git clone https://aur.archlinux.org/snapd.git
+cd snapd
+makepkg -si
+sudo systemctl enable snapd
+reboot
+sudo snap install spotify
 
 ```
