@@ -79,7 +79,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
 # Configurar Timezone
-ln -sf /usr/share/zoneinfo/Armerica/Mexico_City /etc/localtime
+ln -sf /usr/share/zoneinfo/America/Mexico_City /etc/localtime
 
 # Sincronizar reloj
 hwclock --systohc
