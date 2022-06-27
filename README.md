@@ -37,36 +37,37 @@ w  --> Guardar cambios
 
 Debe de verse así:
     nvme0n1     259:0    0 476.9G  0 disk
-    ├─nvme0n1p1 259:1    0   512M  0 part /boot/EFI
+    ├─nvme0n1p1 259:1    0   512M  0 part /mnt/boot/EFI
     ├─nvme0n1p2 259:2    0    16G  0 part [SWAP]
-    └─nvme0n1p3 259:3    0 460.4G  0 part /
+    └─nvme0n1p3 259:3    0 460.4G  0 part /mnt
     nvme1n1     259:4    0  27.3G  0 disk
     
     
 # Formatear particiones
 
-# mkfs.ext4 /dev/root_partition
-mkfs.ext4 /dev/nvme0n1p3
+# mkfs.fat -F 32 /dev/efi_system_partition
+mkfs.fat -F 32 /dev/nvme0n1p1
 
 # mkswap /dev/swap_partition
 mkswap /dev/nvme0n1p2
 
-# mkfs.fat -F 32 /dev/efi_system_partition
-mkfs.fat -F 32 /dev/nvme0n1p1
+# mkfs.ext4 /dev/root_partition
+mkfs.ext4 /dev/nvme0n1p3
 
 
 # Hacer monturas
 
-# Montar el sistema raíz
-mount /dev/nvme0n1p3 /mnt
-
 # Creando las carpetas para montar el boot y EFI
 mkdir /mnt/boot
-mkdir /mnt/boot/EFI
-mount /dev/nvme0n1p1 /mnt/boot/EFI
+mkdir /mnt/boot/efi
+mount /dev/nvme0n1p1 /mnt/boot/efi
 
 # swapon /dev/swap_partition
 swapon /dev/nvme0n1p2
+
+# Montar el sistema raíz
+mount /dev/nvme0n1p3 /mnt
+
 
 # Instalar Linux
 pacstrap /mnt base linux linux-firmware nano networkmanager network-manager-applet wireless_tools wpa_supplicant os-prober mtools dosfstools base-devel linux-headers
@@ -120,7 +121,10 @@ passwd
 pacman -S grub efibootmgr
 
 # Instalación 
-grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+
+# Crear configuración
+grub-mkconfig -o /boot/grub/grub.cfg
 
 # Salimos 
 exit
@@ -138,7 +142,6 @@ systemctl enable wpa_supplicant.service
 
 # Crear usuario
 useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner,http,adm -s /bin/bash nksistemas
-# useradd -m manu320
 
     audio – Privilegios para configurar el audio.
     lp – Privilegios para configurar impresoras.
@@ -212,7 +215,7 @@ makepkg -si
 
 
 # Instalación de repositorios BlackArch en carpeta para BlackArch en Repos
-mkdir BlackArch
+mkdir blackarch
 cd !$
 curl -O https://blackarch.org/strap.sh
 chmod +x strap.sh
@@ -248,7 +251,7 @@ mod + ctrl + q | logout
 
 ```
 
-# COnfigurar de manera temporal el idioma de teclado a latam
+# Configurar de manera temporal el idioma de teclado a latam
 setxkbmap latam
 
 # Installar kitty como terminal 
@@ -275,11 +278,14 @@ sudo pacman -S brightnessctl
 Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
 Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 
-# Software util para reproducir audio
-pacman -S --noconfirm gstreamer gst-plugins-bad gst-plugins-base  gst-plugins-base-libs gst-plugins-good gst-plugins-ugly xine-lib libdvdcss libdvdread dvd+rw-tools vlc lame
+    # Software util para reproducir audio
+    pacman -S --noconfirm gstreamer gst-plugins-bad gst-plugins-base  gst-plugins-base-libs gst-plugins-good gst-plugins-ugly xine-lib libdvdcss libdvdread dvd+rw-tools vlc lame
 
-# Audio controller with pamixer
-sudo pacman -S pamixer
+    #Audio
+    sudo pacman -Sy alsa-utils pulseaudio
+
+    # Audio controller with pamixer
+    sudo pacman -S pamixer
 
 # Volume
 Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer --decrease 5")),
