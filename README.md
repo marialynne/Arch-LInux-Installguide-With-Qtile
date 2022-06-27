@@ -3,6 +3,11 @@
 # Teclado Latino:
 loadkeys la-latin1
 
+# Conectar a internet temporalmente 
+iwctl
+station wlan0 connect zafira
+exit 
+
 # Actualizar el reloj del sistema
 timedatectl set-ntp true
 
