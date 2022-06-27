@@ -58,7 +58,7 @@ mkfs.fat -F 32 /dev/nvme0n1p1
 # Hacer monturas
 
 # Montar el sistema raíz
-mount /dev/nvme0n1p1 /mnt
+mount /dev/nvme0n1p3 /mnt
 
 # Creando las carpetas para montar el boot y EFI
 mkdir /mnt/boot
