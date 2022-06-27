@@ -286,6 +286,10 @@ Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 
     # Audio controller with pamixer
     sudo pacman -S pamixer
+    
+    # Esto es sagrado para el audio de la omen
+    sudo pacman -S sof-firmware sof-tools
+    reboot
 
 # Volume
 Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer --decrease 5")),
