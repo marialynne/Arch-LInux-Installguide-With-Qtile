@@ -137,8 +137,8 @@ systemctl start wpa_supplicant.service
 systemctl enable wpa_supplicant.service
 
 # Crear usuario
-useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner,http -s /bin/bash nksistemas
-useradd -m manu320
+useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner,http,adm -s /bin/bash nksistemas
+# useradd -m manu320
 
     audio – Privilegios para configurar el audio.
     lp – Privilegios para configurar impresoras.
