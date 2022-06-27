@@ -96,8 +96,8 @@ locale-gen
 
 # Agregamos el lenguaje a locale.conf
 nano /etc/locale.conf
-es_MX.UTF-8
-en_US.UTF-8
+LANG=es_MX.UTF-8
+LANG=en_US.UTF-8
 
 # Configurar nombre (hostname), es el nombre del equipo, en mi caso se llamará «omen-laptop»
 echo omen > /etc/hostname
