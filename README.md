@@ -267,6 +267,9 @@ sudo pacman -S brightnessctl
 Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
 Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 
+# Software util para reproducir audio
+pacman -S --noconfirm gstreamer gst-plugins-bad gst-plugins-base  gst-plugins-base-libs gst-plugins-good gst-plugins-ugly xine-lib libdvdcss libdvdread dvd+rw-tools vlc lame
+
 # Audio controller with pamixer
 sudo pacman -S pamixer
 
