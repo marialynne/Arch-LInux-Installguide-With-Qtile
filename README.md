@@ -33,6 +33,8 @@ Partition number --> enter
 Firs sector --> enter 
 Last sector --> enter para disco entero
 
+w  --> Guardar cambios
+
 Debe de verse así:
     nvme0n1     259:0    0 476.9G  0 disk
     ├─nvme0n1p1 259:1    0   512M  0 part /boot/EFI
