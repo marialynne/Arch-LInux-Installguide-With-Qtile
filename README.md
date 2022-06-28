@@ -235,7 +235,6 @@ sudo pacman -S lightdm lightdm-gtk-greeter qtile xterm code firefox
 sudo systemctl enable lightdm
 reboot
 ```
-
 ## Qtile commands
 
 Key | Action
@@ -256,7 +255,7 @@ mod + ctrl + q | logout
 # Configurar de manera temporal el idioma de teclado a latam
 setxkbmap latam
 ```
-### KItty terminal
+### Kitty terminal
 ```
 # Installar kitty como terminal 
 sudo pacman -S kitty
@@ -296,7 +295,6 @@ Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
 Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer --decrease 5")),
 Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer --increase 5")),
 Key([], "XF86AudioMute", lazy.spawn("pamixer --toggle-mute")),
-
 ```
 ### OhMyZSH y ZSH
 Hacerlo como usuario y root
@@ -307,6 +305,7 @@ sudo pacman -S zsh zsh-completions
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
+
 ### Repos
 (BlackArch, Paru, Package-query, Yaourt)
 Realizar como usuario
@@ -341,6 +340,58 @@ reboot
 ```
 sudo snap install spotify
 ```
+### SSH
+```
+yaourt -S openssh
+mkdir -p ~/.config/systemd/user/
+nano ~/.config/systemd/user/ssh-agent.service
+```
+Pegar esto
+```
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=forking
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target
+```
+Exportar variables
+```
+#.bash_profile
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+# ~/.config/fish/config.fish
+set -x SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+
+reboot
+```
+Activar servicio ssh
+```
+systemctl --user enable --now ssh-agent
+```
+Verificar versión
+```
+ssh -V
+```
+Creación de llaves
+```
+cd .ssh
+ssh-keygen
+
+# Activar agente
+eval $(ssh-agent -s)
+
+# Registrar 
+ssh-add ~/.ssh/id_rsa
+
+# Pegar llave pública en Github
+cat id_rsa.pub
+```
+
 ***
 ### Repos
 (De manera manuel)
