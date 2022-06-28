@@ -17,14 +17,15 @@ exit
 # Actualizar el reloj del sistema
 timedatectl set-ntp true
 ```
-### Particiones y formateo de disco
+### Particiones 
 ```
 # Ver particiones
 lsblk
 
 # Crear particiones
 fdisk /dev/nvme0n1 
-
+```
+```
 g --> Formato GPT
 n --> nueva partición
 Partition number --> enter
@@ -50,7 +51,9 @@ Debe de verse así:
     └─nvme0n1p3 259:3    0 460.4G  0 part /mnt
     nvme1n1     259:4    0  27.3G  0 disk
     
-    
+``` 
+### Formatear particiones
+```
 # Formatear particiones
 
 # mkfs.fat -F 32 /dev/efi_system_partition
