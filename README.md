@@ -274,6 +274,10 @@ sudo pacman -S rofi
 # Para cambiar el tema de rofi instala which
 sudo pacman -S which
 rofi-theme-selector
+
+Key([mod], "m", lazy.spawn("rofi -show run")),
+Key([mod, 'shift'], "m", lazy.spawn("rofi -show")),
+
 ```
 ### Brillo y audio
 ```
@@ -308,7 +312,19 @@ sudo pacman -S zsh zsh-completions
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
-
+### Ranger y thunar
+```
+sudo pacman -S thunar ranger
+```
+### Gwet
+```
+sudo pacman -S wget
+```
+### Unzip
+```
+sudo pacman -S unzip
+```
+***
 ### Repos
 (BlackArch, Paru, Package-query, Yaourt)
 Realizar como usuario
