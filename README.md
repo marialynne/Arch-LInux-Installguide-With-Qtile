@@ -1,6 +1,6 @@
 # Arch LInux installguide with Qtile
 ***
-## Pre instalación
+## Preinstalación
 
 ### Teclado latino
 ```
