@@ -1,8 +1,14 @@
-# Arch-LInux-installguide-with-Qtile
+# Arch LInux installguide with Qtile
+***
+## Pre instalación
+
+### Teclado latino
 ```
 # Teclado Latino:
 loadkeys la-latin1
-
+```
+### Wifi temporal
+```
 # Conectar a internet temporalmente 
 iwctl
 station wlan0 connect zafira
@@ -10,7 +16,9 @@ exit
 
 # Actualizar el reloj del sistema
 timedatectl set-ntp true
-
+```
+### Particiones y formateo de disco
+```
 # Ver particiones
 lsblk
 
@@ -53,8 +61,9 @@ mkswap /dev/nvme0n1p2
 
 # mkfs.ext4 /dev/root_partition
 mkfs.ext4 /dev/nvme0n1p3
-
-
+```
+### Monturas
+```
 # Hacer monturas
 
 # Creando las carpetas para montar el boot y EFI
@@ -67,15 +76,17 @@ swapon /dev/nvme0n1p2
 
 # Montar el sistema raíz
 mount /dev/nvme0n1p3 /mnt
-
-
+```
+### Instalar Linux 
+```
 # Instalar Linux
 pacstrap /mnt base linux linux-firmware nano networkmanager network-manager-applet wireless_tools wpa_supplicant os-prober mtools dosfstools base-devel linux-headers
 
 # Generar FSTAB
 genfstab -U /mnt >> /mnt/etc/fstab
-
-
+```
+### Modo instalación live
+```
 # Vamos a ingresar al modo instalación, actualmente estamos en la versión Live.
 arch-chroot /mnt
 
@@ -132,14 +143,36 @@ exit
 # Desmontar las particiones y reiniciar
 umount -a
 reboot
+```
+***
+## Post instalación
 
+### Activar servicios de internet
+```
 # Activando NetworkManager
 systemctl start NetworkManager
 systemctl enable NetworkManager
 
 systemctl start wpa_supplicant.service
 systemctl enable wpa_supplicant.service
+```
+### Conectarse a wifi
+```
+# Conectar a red wifi con nmcli
+# Asegúrate de que la radio WiFi está activada (por defecto): 
+nmcli radio wifi on
 
+# Actualizar la lista de conexiones Wi-Fi disponibles
+nmcli device wifi rescan
+
+# Ver los puntos de acceso Wi-Fi disponibles
+nmcli dev wifi list
+
+# Conectarse a una conexión Wi-Fi mediante nmcli
+nmcli dev wifi connect SSID-Name password wireless-password
+```
+### Creación de usuario
+```
 # Crear usuario
 useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner,http,adm -s /bin/bash nksistemas
 
@@ -163,22 +196,9 @@ usermod -aG wheel,adm manu320
 
 # Ver los grupos que tiene el usuario
 groups manu320
-
-
-# Conectar a red wifi con nmcli
-# Asegúrate de que la radio WiFi está activada (por defecto): 
-nmcli radio wifi on
-
-# Actualizar la lista de conexiones Wi-Fi disponibles
-nmcli device wifi rescan
-
-# Ver los puntos de acceso Wi-Fi disponibles
-nmcli dev wifi list
-
-# Conectarse a una conexión Wi-Fi mediante nmcli
-nmcli dev wifi connect SSID-Name password wireless-password
-
-
+```
+### Sudo
+```
 # Instalar sudo
 pacman -S sudo
 
@@ -187,46 +207,29 @@ nano /etc/sudoers
 
 # Descomentamos y guardamos
 %wheel ALL=(ALL:ALL) ALL
-
+```
+### Drivers de Nvidia
+```
 # Instalar Driver de video para Nvidia
-pacman -S nvidia nvidia-utils
-
+pacman -S nvidia nvidia-utils nvidia-settings 
+```
+### Neofetch
+```
 # Instalamos neofetch
 pacman -S neofetch
-
+```
+### Git
+```
 # Instalamos git
 pacman -S git
-
-# Desde manu320 (usuario)
-# Creamos carpeta para nuestros repositorios del sistema
-mkdir -p Repos
-
-# Accedenos a la carpeta
-cd !$
-
-# Descargamos paru
-git clone https://aur.archlinux.org/paru-bin.git
-
-# Accedemos a paru-bin
-cd paru-bin/
-
-# Instalamos paru-bin
-makepkg -si
-
-
-# Instalación de repositorios BlackArch en carpeta para BlackArch en Repos
-mkdir blackarch
-cd !$
-curl -O https://blackarch.org/strap.sh
-chmod +x strap.sh
-sudo ./strap.sh
-
-# Sincronizar y actualizar paquetes 
-sudo pacman -Syyu
-
+```
+### Xorg
+```
 # Instalar interfaz gráfica
 pacman -S xorg xorg-server
-
+```
+### Qtile
+```
 # Instalar lo necesario para Qtile
 sudo pacman -S lightdm lightdm-gtk-greeter qtile xterm code firefox
 sudo systemctl enable lightdm
@@ -248,38 +251,36 @@ mod + ctrl + q | logout
 
 **Recuerda actualizar Qtile con cada cambio que se haga a la configuración**
 
-
+### Cambiar idioma de teclado
 ```
-
 # Configurar de manera temporal el idioma de teclado a latam
 setxkbmap latam
-
+```
+### KItty terminal
+```
 # Installar kitty como terminal 
 sudo pacman -S kitty
 
 # En ~/.config/qtile/config.py podremos editar la configuración de qtile
 code ~/.config/qtile/config.py
-
+```
+### Rofi
+```
 # Instalar programa ejecutador de programas
 sudo pacman -S rofi
 
 # Para cambiar el tema de rofi instala which
 sudo pacman -S which
 rofi-theme-selector
-
-# Wallpaper
-sudo pacman -S feh
-feh --bg-scale path/to/wallpaper
-
+```
+### Brillo y audio
+```
 # Para controllar brillo de pantalla instala brightnessctl
 sudo pacman -S brightnessctl
 
 # Brightness
 Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
 Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
-
-    # Software util para reproducir audio
-    pacman -S --noconfirm gstreamer gst-plugins-bad gst-plugins-base  gst-plugins-base-libs gst-plugins-good gst-plugins-ugly xine-lib libdvdcss libdvdread dvd+rw-tools vlc lame
 
     #Audio
     sudo pacman -Sy alsa-utils pulseaudio
@@ -296,20 +297,77 @@ Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer --decrease 5")),
 Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer --increase 5")),
 Key([], "XF86AudioMute", lazy.spawn("pamixer --toggle-mute")),
 
-
+```
+### OhMyZSH y ZSH
+Hacerlo como usuario y root
+```
 # Zsh y OhMyZSH
 # Realizar tanto en usuario como en root
 sudo pacman -S zsh zsh-completions
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+### Repos
+(BlackArch, Paru, Package-query, Yaourt)
+```
+git clone https://github.com/Manuel-Camacho-Padilla/Repos-ArchLinux.git
+```
+(No necesario)
+```
+# Desde manu320 (usuario)
+# Creamos carpeta para nuestros repositorios del sistema
+mkdir -p Repos
 
-# Instalación de snap y spotify
+# Accedenos a la carpeta
+cd !$
+```
+### Paru 
+(No necesario)
+```
+# Descargamos paru
+git clone https://aur.archlinux.org/paru-bin.git
+
+# Accedemos a paru-bin
+cd paru-bin/
+
+# Instalamos paru-bin
+makepkg -si
+
+```
+### BlackArch
+(No necesario)
+```
+# Instalación de repositorios BlackArch en carpeta para BlackArch en Repos
+mkdir blackarch
+cd !$
+curl -O https://blackarch.org/strap.sh
+chmod +x strap.sh
+sudo ./strap.sh
+
+# Sincronizar y actualizar paquetes 
+sudo pacman -Syyu
+```
+### Snap 
+(No necesario, solo enable y reboot)
+```
+# Instalación de snap
 cd repos
 git clone https://aur.archlinux.org/snapd.git
 cd snapd
 makepkg -si
+```
+Dentro Repos (Recordar enable)
+```
 sudo systemctl enable snapd
 reboot
+```
+### Spotify snap
+```
 sudo snap install spotify
-
+```
+### Wallpaper feh
+(No necesario)
+```
+sudo pacman -S feh
+feh --bg-scale path/to/wallpaper
 ```
