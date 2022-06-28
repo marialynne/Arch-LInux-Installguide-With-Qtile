@@ -231,6 +231,12 @@ pacman -S git
 # Instalar interfaz gráfica
 pacman -S xorg xorg-server
 ```
+
+### Directorios 
+```
+xdg-user-dirs
+```
+
 ### Qtile
 ```
 # Instalar lo necesario para Qtile
