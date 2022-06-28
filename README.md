@@ -309,10 +309,41 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 ```
 ### Repos
 (BlackArch, Paru, Package-query, Yaourt)
+Realizar como usuario
 ```
 git clone https://github.com/Manuel-Camacho-Padilla/Repos-ArchLinux.git
+cd Repos-ArchLinux
+
+# Instalación de blackarch
+cd blackarch 
+sudo ./strap.sh
+
+# Instalación de paru
+cd .. && cd paru
+sudo makepkg -si
+
+# Instalación de package-query (Necesario para Yaourt)
+cd .. && cd package-query
+sudo makepkg -si
+
+# Instalación de yaourt
+cd .. && cd yaourt
+sudo makepkg -si
+
+# Instalación de snap
+cd .. && cd snapd
+sudo makepkg -si
+
+sudo systemctl enable snapd
+reboot
 ```
-(No necesario)
+### Spotify snap
+```
+sudo snap install spotify
+```
+***
+### Repos
+(De manera manuel)
 ```
 # Desde manu320 (usuario)
 # Creamos carpeta para nuestros repositorios del sistema
@@ -322,7 +353,7 @@ mkdir -p Repos
 cd !$
 ```
 ### Paru 
-(No necesario)
+(De manera manual)
 ```
 # Descargamos paru
 git clone https://aur.archlinux.org/paru-bin.git
@@ -335,7 +366,7 @@ makepkg -si
 
 ```
 ### BlackArch
-(No necesario)
+(De manera manual)
 ```
 # Instalación de repositorios BlackArch en carpeta para BlackArch en Repos
 mkdir blackarch
@@ -348,22 +379,16 @@ sudo ./strap.sh
 sudo pacman -Syyu
 ```
 ### Snap 
-(No necesario, solo enable y reboot)
+(De manera manual)
 ```
 # Instalación de snap
 cd repos
 git clone https://aur.archlinux.org/snapd.git
 cd snapd
 makepkg -si
-```
-Dentro Repos (Recordar enable)
-```
+
 sudo systemctl enable snapd
 reboot
-```
-### Spotify snap
-```
-sudo snap install spotify
 ```
 ### Wallpaper feh
 (No necesario)
