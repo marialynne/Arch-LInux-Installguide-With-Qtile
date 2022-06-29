@@ -302,6 +302,10 @@ Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
     # Esto es sagrado para el audio de la omen
     sudo pacman -S sof-firmware sof-tools
     reboot
+    
+    # Configurar el audio en amixer
+    alsamixer
+    # FN F6 --> Selecciona tu tarjeta de audio y desmuteala
 
 # Volume
 Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer --decrease 5")),
