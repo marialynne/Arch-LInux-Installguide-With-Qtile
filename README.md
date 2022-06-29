@@ -366,7 +366,7 @@ sudo snap install spotify
 ```
 ### SSH
 ```
-yaourt -S openssh
+sudo pacman -S openssh
 mkdir -p ~/.config/systemd/user/
 nano ~/.config/systemd/user/ssh-agent.service
 ```
@@ -413,7 +413,7 @@ eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 
 # Pegar llave pública en Github
-cat id_rsa.pub
+cd .ssh && cat id_rsa.pub
 ```
 
 ***
