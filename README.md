@@ -457,6 +457,16 @@ sudo pacman -S dunst
 ```
 sudo pacman -S playerctl 
 ```
+### Bluetooth
+```
+sudo pacman -S bluez blueman bluez-utils pulseaudio-bluetooth pavucontrol
+sudo systemctl start bluetooth.service
+sudo systemctl enable bluetooth.service
+reboot
+
+# Config file
+sudo vim /etc/bluetooth/main.conf
+```
 ### Wallpaper feh
 (No necesario)
 ```
