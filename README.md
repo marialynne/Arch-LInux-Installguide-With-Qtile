@@ -442,6 +442,14 @@ sudo snap install spotify
 ```
 sudo pacman -S postman
 ```
+### Brave broweser
+```
+cd Repos 
+git clone https://aur.archlinux.org/brave-bin.git
+cd brave-bin
+makepkg -si
+```
+
 ### Wallpaper feh
 (No necesario)
 ```
