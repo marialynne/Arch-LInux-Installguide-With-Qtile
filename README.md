@@ -449,7 +449,10 @@ git clone https://aur.archlinux.org/brave-bin.git
 cd brave-bin
 makepkg -si
 ```
-
+### Dunst notifications
+```
+sudo pacman -S dunst
+```
 ### Wallpaper feh
 (No necesario)
 ```
