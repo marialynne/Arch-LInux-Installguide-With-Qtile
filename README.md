@@ -66,19 +66,20 @@ mkswap /dev/nvme0n1p2
 mkfs.ext4 /dev/nvme0n1p3
 ```
 ### Monturas
+Cuidado aquí y asegurate de hacer las monturas en el orden correcto o al instalar el grub este no detectará el efi
 ```
 # Hacer monturas
+
+# Montar el sistema raíz
+mount /dev/nvme0n1p3 /mnt
+
+# swapon /dev/swap_partition
+swapon /dev/nvme0n1p2
 
 # Creando las carpetas para montar el boot y EFI
 mkdir /mnt/boot
 mkdir /mnt/boot/efi
 mount /dev/nvme0n1p1 /mnt/boot/efi
-
-# swapon /dev/swap_partition
-swapon /dev/nvme0n1p2
-
-# Montar el sistema raíz
-mount /dev/nvme0n1p3 /mnt
 ```
 ### Instalar Linux 
 ```
