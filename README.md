@@ -453,6 +453,10 @@ makepkg -si
 ```
 sudo pacman -S dunst
 ```
+### Media control
+```
+sudo pacman -S playerctl 
+```
 ### Wallpaper feh
 (No necesario)
 ```
