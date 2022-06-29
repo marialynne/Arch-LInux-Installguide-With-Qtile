@@ -402,7 +402,7 @@ ssh -V
 ```
 Creación de llaves
 ```
-cd .ssh
+
 ssh-keygen
 
 # Activar agente
