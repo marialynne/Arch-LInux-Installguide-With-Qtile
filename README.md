@@ -473,3 +473,8 @@ sudo vim /etc/bluetooth/main.conf
 sudo pacman -S feh
 feh --bg-scale path/to/wallpaper
 ```
+### Sensores de hardware
+(No necesario)
+```
+sudo pacman -S htop
+```
