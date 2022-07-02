@@ -84,7 +84,7 @@ mount /dev/nvme0n1p1 /mnt/boot/efi
 ### Instalar Linux 
 ```
 # Instalar Linux
-pacstrap /mnt base linux linux-firmware nano networkmanager network-manager-applet wireless_tools wpa_supplicant os-prober mtools dosfstools base-devel linux-headers
+pacstrap /mnt base linux linux-firmware nano networkmanager network-manager-applet wireless_tools wpa_supplicant dosfstools base-devel
 
 # Generar FSTAB
 genfstab -U /mnt >> /mnt/etc/fstab
