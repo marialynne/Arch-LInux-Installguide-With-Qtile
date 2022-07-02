@@ -448,7 +448,8 @@ sudo snap install spotify
 ```
 ### Postman
 ```
-sudo pacman -S postman
+git clone https://aur.archlinux.org/postman-bin.git
+# pasos siguientes a makepkg -si
 ```
 ### Brave broweser
 ```
@@ -476,7 +477,6 @@ reboot
 sudo vim /etc/bluetooth/main.conf
 ```
 ### Wallpaper feh
-(No necesario)
 ```
 sudo pacman -S feh
 feh --bg-scale path/to/wallpaper
