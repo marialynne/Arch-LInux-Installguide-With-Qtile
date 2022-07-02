@@ -489,4 +489,9 @@ sudo pacman -S htop
 Necesario
 ```
 sudo pacman -S zip unzip tree which redshift qt5ct lxappearance python-psutil
+# nerdfonts
+cd Repos
+git clone https://aur.archlinux.org/nerd-fonts-complete.git 
+cd nerd-fonts-complete
+makepg -si
 ```
