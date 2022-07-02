@@ -488,5 +488,5 @@ sudo pacman -S htop
 ```
 Necesario
 ```
-sudo pacman -S zip unzip tree which redshift qt5ct lxappearance 
+sudo pacman -S zip unzip tree which redshift qt5ct lxappearance python-psutil
 ```
