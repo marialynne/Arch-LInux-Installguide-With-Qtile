@@ -335,7 +335,7 @@ sudo pacman -S unzip
 ```
 ### SSH
 ```
-sudo pacman -S openssh
+yaourt -S openssh
 mkdir -p ~/.config/systemd/user/
 nano ~/.config/systemd/user/ssh-agent.service
 ```
