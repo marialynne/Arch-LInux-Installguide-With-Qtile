@@ -486,3 +486,7 @@ feh --bg-scale path/to/wallpaper
 ```
 sudo pacman -S htop
 ```
+Necesario
+```
+sudo pacman -S zip unzip tree which redshift qt5ct lxappearance 
+```
