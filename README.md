@@ -9,6 +9,8 @@ loadkeys la-latin1
 ```
 ### Wifi temporal
 ```
+# Activar tarjeta 
+rfkill unblock all
 # Conectar a internet temporalmente 
 iwctl
 station wlan0 connect zafira
