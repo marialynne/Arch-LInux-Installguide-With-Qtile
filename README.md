@@ -494,4 +494,18 @@ cd Repos
 git clone https://aur.archlinux.org/nerd-fonts-complete.git 
 cd nerd-fonts-complete
 makepg -si
+
+# comic-code
+# Instalalo en zip dentro de /usr/share/fonts
+mkdir comic-code
+cd comic-code
+unzip comic-code.zip
+
+# Actualizamos cache
+fc-cache
+
+# Para saber las posibles fuentes dispoibles desde kitty
+kitty +list-fonts --psnames | grep comic
+# o también, pero el de arriaba es mejor por el filtrado grep
+kitty +list-fonts --psnames 
 ```
