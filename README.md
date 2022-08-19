@@ -509,10 +509,11 @@ fc-cache
 # Para saber las posibles fuentes dispoibles desde kitty
 kitty +list-fonts --psnames | grep comic
 # o también, pero el de arriaba es mejor por el filtrado grep
+kitty +list-fonts --psnames 
 
 ```
 # Para los warnings:
 ```
 sudo pacman -Syu linux-firmware-qlogic
-kitty +list-fonts --psnames 
+
 ```
