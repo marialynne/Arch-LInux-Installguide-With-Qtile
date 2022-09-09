@@ -517,3 +517,108 @@ kitty +list-fonts --psnames
 sudo pacman -Syu linux-firmware-qlogic
 
 ```
+
+
+
+## Linux
+
+### Ver porcentaje de bateria 
+
+`cat /sys/class/power_supply/BAT1/capacity`
+
+
+### Conectar a Internet
+
+* List all available networks
+
+`nmcli device wifi list`
+* Connect to your network
+
+`nmcli device wifi connect YOUR_SSID password YOUR_PASSWORD`
+
+### Aplicaciones en segundo plano
+
+* Comando para ejecutar aplicaciones en segundo plano:
+Se agrega `&` al final, ejemplo:
+
+`firefox &`
+
+***
+
+## Qtile
+* Comando para cambiar idioma de teclado en ArchLinux Qtile:
+
+`setxkbmap latam`
+
+***
+
+## Pacman 
+
+### Información
+
+* Comando para obtener información de una aplicación en ArchLInux:
+
+`pacman -Qi software-name`
+
+* Comando para saber si tenemos un software instalado:
+
+`pacman -Q software-name`
+
+> Esto devuelte el nombre del programa y su versión
+
+### Actualizar
+
+> No es prudente actualizar si, por ejemplo, se necesitará tener el sistema estable por motivos de trabajo. Más bien, actualizar durante el tiempo libre y estar preparados para hacer frente a cualquier problema que pueda surgir.
+
+* Comando para buscar una aplicación oficial:
+
+`sudo pacman -S software-name`
+
+* Comando para sincronizar paquetes:
+
+`sudo pacman -Sy`
+
+* Comando para actualizar paquetes:
+
+`sudo yay -Syu`
+
+* **Comando para sincronizar y actualizar paquetes al mismo tiempo:**
+
+`sudo pacman -Syyu`
+
+### Eliminar 
+
+* Comando para borrar aplicaciones instaladas:
+
+`sudo pacman -R software-name`
+
+* Comando para borrar aplicaciones y dependencias:
+
+`sudo pacman -Rs software-name`
+
+* Comando para borrar aplicaciones y dependencias junto a archivos de configuración:
+
+`sudo pacman -Rsn software-name`
+
+* Comando para eliminar un software sin importar dependencias:
+
+`pacman -Rdd software-name`
+
+* Comando para eliminar todos los paquetes de que depende un software:
+
+**Podría eliminar paquetes importantes**
+`pacman -Rc software-name`
+
+### Ayuda
+* Comando para obtener lista de opciones con pacman:
+
+`pacman -help`
+
+* Comando para obtener lista de opciones más especifico:
+
+`pacman -S -help`
+
+* Comando para obtener manual de pacman:
+
+`pacman man`
+
